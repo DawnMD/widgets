@@ -3,10 +3,21 @@ import wikisearch from "../apis/wikisearch";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("javascript");
+  const [debouncedTerm, setDebouncedTerm] = useState(searchTerm);
   const [results, setResults] = useState([]);
   const search = (term) => {
     setSearchTerm(term.target.value);
   };
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedTerm(searchTerm);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [searchTerm]);
+
   useEffect(() => {
     const wikiApi = async () => {
       const { data } = await wikisearch.get("", {
@@ -16,19 +27,9 @@ const Search = () => {
       });
       setResults(data.query.search);
     };
-    if (searchTerm && !results.length) {
-      wikiApi();
-    } else {
-      const timerId = setTimeout(() => {
-        if (searchTerm) {
-          wikiApi();
-        }
-      }, 500);
-      return () => {
-        clearTimeout(timerId);
-      };
-    }
-  }, [searchTerm]);
+    wikiApi();
+  }, [debouncedTerm]);
+
   const renderedList = results.map((result) => {
     return (
       <div key={result.pageid} className="item">
