@@ -1,4 +1,5 @@
 import Accordion from "./components/Accordion/Accordion";
+import Search from "./components/Search/Search";
 import "semantic-ui-css/semantic.min.css";
 
 const datas = [
@@ -19,7 +20,8 @@ const datas = [
 export default () => {
   return (
     <div>
-      <Accordion datas={datas} />
+      {/* <Accordion datas={datas} /> */}
+      <Search />
     </div>
   );
 };
