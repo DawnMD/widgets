@@ -1,6 +1,7 @@
 import Accordion from "./components/Accordion/Accordion";
 import Search from "./components/Search/Search";
 import Dropdown from "./components/Dropdown/Dropdown";
+import Translate from "./components/Translate/Translate";
 import "semantic-ui-css/semantic.min.css";
 import { useState } from "react";
 
@@ -24,26 +25,28 @@ const options = [
   { label: "Blue", value: "blue" },
 ];
 export default () => {
-  const [selected, setSelected] = useState(options[0]);
-  const [openDropdown, setOpenDropdown] = useState(true);
+  // const [selected, setSelected] = useState(options[0]);
+  // const [openDropdown, setOpenDropdown] = useState(true);
   return (
     <div>
       {/* <Accordion datas={datas} /> */}
       {/* <Search /> */}
-      <button
+      {/* <button
         onClick={() => {
           setOpenDropdown(!openDropdown);
         }}
       >
         Toggle Dropdown
-      </button>
-      {openDropdown ? (
+      </button> */}
+      {/* {openDropdown ? (
         <Dropdown
           selected={selected}
           onSelectedChange={setSelected}
           options={options}
+          label='color'
         />
-      ) : null}
+      ) : null} */}
+      <Translate />
     </div>
   );
 };
