@@ -4,6 +4,7 @@ import Search from "./components/Search/Search";
 import Dropdown from "./components/Dropdown/Dropdown";
 import Translate from "./components/Translate/Translate";
 import Route from "./components/Route";
+import Header from "./components/Header/Header";
 import "semantic-ui-css/semantic.min.css";
 
 const datas = [
@@ -27,9 +28,9 @@ const options = [
 ];
 export default () => {
   const [selected, setSelected] = useState(options[0]);
-  // const [openDropdown, setOpenDropdown] = useState(true);
   return (
     <div>
+      <Header />
       <Route path="/">
         <Accordion datas={datas} />
       </Route>
