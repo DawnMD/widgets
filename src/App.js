@@ -1,9 +1,10 @@
+import { useState } from "react";
 import Accordion from "./components/Accordion/Accordion";
 import Search from "./components/Search/Search";
 import Dropdown from "./components/Dropdown/Dropdown";
 import Translate from "./components/Translate/Translate";
+import Route from "./components/Route";
 import "semantic-ui-css/semantic.min.css";
-import { useState } from "react";
 
 const datas = [
   {
@@ -25,28 +26,27 @@ const options = [
   { label: "Blue", value: "blue" },
 ];
 export default () => {
-  // const [selected, setSelected] = useState(options[0]);
+  const [selected, setSelected] = useState(options[0]);
   // const [openDropdown, setOpenDropdown] = useState(true);
   return (
     <div>
-      {/* <Accordion datas={datas} /> */}
-      {/* <Search /> */}
-      {/* <button
-        onClick={() => {
-          setOpenDropdown(!openDropdown);
-        }}
-      >
-        Toggle Dropdown
-      </button> */}
-      {/* {openDropdown ? (
+      <Route path="/">
+        <Accordion datas={datas} />
+      </Route>
+      <Route path="/wikisearch">
+        <Search />
+      </Route>
+      <Route path="/dropdown">
         <Dropdown
           selected={selected}
           onSelectedChange={setSelected}
           options={options}
-          label='color'
+          label="color"
         />
-      ) : null} */}
-      <Translate />
+      </Route>
+      <Route path="/translate">
+        <Translate />
+      </Route>
     </div>
   );
 };
